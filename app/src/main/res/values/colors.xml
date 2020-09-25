@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/colorSilver</color>
+    <color name="colorPrimaryDark">@color/colorSilver</color>
+    <color name="colorAccent">@color/colorBabyBlue</color>
+    <color name="mtrl_textinput_default_box_stroke_color">@color/colorBabyBlue</color>
+    <color name="colorControlHighlight">@color/colorCrushedIce</color>
+
+    <color name="colorAccentButtonBackgroundDisabled">@color/colorSilver</color>
+    <color name="colorAccentButtonBackgroundEnabled">@color/colorBabyBlue</color>
+
+    <color name="colorAccentButtonTextDisabled">@color/colorWhite</color>
+    <color name="colorAccentButtonTextEnabled">@color/colorWhite</color>
+
+    <color name="colorBoxBackgroundDisabled">@color/colorSilver</color>
+    <color name="colorBoxBackgroundEnabled">@color/colorWhite</color>
+
+    <color name="colorBoxStrokeDisabled">@color/colorSilver</color>
+    <color name="colorBoxStrokeEnabled">@color/colorBabyBlue</color>
+
+    <color name="colorButtonBackgroundDisabled">@color/colorSilver</color>
+    <color name="colorButtonBackgroundEnabled">@color/colorWhite</color>
+
+    <color name="colorButtonTextDisabled">@color/colorWhite</color>
+    <color name="colorButtonTextEnabled">@color/colorBlueGrey</color>
+
+    <color name="colorDialogBackground">@color/colorSnow</color>
+
+    <color name="colorEndIconDisabled">@color/colorSilver</color>
+    <color name="colorEndIconEnabled">@color/colorBabyBlue</color>
+
+    <color name="colorFragmentBackground">@color/colorSnow</color>
+    <color name="colorFragmentBackgroundForBorder">@color/colorSilver</color>
+
+    <color name="colorHintTextDisabled">@color/colorSilver</color>
+    <color name="colorHintTextEnabled">@color/colorBabyBlue</color>
+
+    <color name="colorStartIconDisabled">@color/colorSilver</color>
+    <color name="colorStartIconEnabled">@color/colorBabyBlue</color>
+
+    <color name="colorTabIndicator">@color/colorBabyBlue</color>
+    <color name="colorTabIconTintSelected">@color/colorBabyBlue</color>
+    <color name="colorTabIconTintUnSelected">@color/colorSilver</color>
+    <color name="colorTabTextSelected">@color/colorBabyBlue</color>
+    <color name="colorTabTextUnSelected">@color/colorSilver</color>
+
+    <color name="colorTextEnabledDark">@color/colorBlueGrey</color>
+    <color name="colorTextEnabledLight">@color/colorDarkerGrey</color>
+    <color name="colorTextDisabledDark">@color/colorSilver</color>
+    <color name="colorTextDisabledLight">@color/colorSilver</color>
+
+    <color name="colorToolbarBackgroundDark">@color/colorBabyBlue</color>
+    <color name="colorToolbarTextDark">@color/colorBlueGrey</color>
+    <color name="colorToolbarTextLight">@color/colorWhite</color>
+
+    <color name="colorError">@color/colorFlame</color>
+
+    <color name="colorFacebook">#4267B2</color>
+    <color name="colorTwitter">#00ACEE</color>
+
+    <color name="colorBabyBlue">#89CFF0</color>
+    <color name="colorBlueGrey">#263238</color>
+    <color name="colorCrushedIce">#C4FFF7</color>
+    <color name="colorDarkerGrey">#A9A9A9</color>
+    <color name="colorFlame">#E25822</color>
+    <color name="colorSilver">#C0C0C0</color>
+    <color name="colorSnow">#FFFAFA</color>
+    <color name="colorWhite">#FEFEFE</color>
+</resources>

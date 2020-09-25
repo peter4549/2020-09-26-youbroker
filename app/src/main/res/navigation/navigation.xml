@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/tabFragment">
+    <fragment
+        android:id="@+id/tabFragment"
+        android:name="com.duke.elliot.kim.kotlin.youbroker.tab.TabFragment"
+        android:label="TabFragment" >
+        <action
+            android:id="@+id/action_tabFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.duke.elliot.kim.kotlin.youbroker.sign_in.SignInFragment"
+        android:label="SignInFragment" />
+</navigation>

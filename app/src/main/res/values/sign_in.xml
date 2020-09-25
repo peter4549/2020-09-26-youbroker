@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email">이메일</string>
+    <string name="find_password">비밀번호 찾기</string>
+    <string name="password">패스워드</string>
+    <string name="sign_in">로그인</string>
+    <string name="sign_in_with_apple">애플로 로그인</string>
+    <string name="sign_in_with_facebook">페이스북으로 로그인</string>
+    <string name="sign_in_with_google">구글로 로그인</string>
+    <string name="sign_in_with_twitter">트위터로 로그인</string>
+    <string name="sign_up">회원가입</string>
+
+    <string name="request_sign_in_message">로그인 후 이용하실 수 있습니다. 로그인하시겠습니까?</string>
+</resources>

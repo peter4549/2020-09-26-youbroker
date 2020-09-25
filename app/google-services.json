@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "315184448273",
+    "firebase_url": "https://youbroker.firebaseio.com",
+    "project_id": "youbroker",
+    "storage_bucket": "youbroker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:315184448273:android:da58a1f7a66170e916c2b0",
+        "android_client_info": {
+          "package_name": "com.duke.elliot.kim.kotlin.youbroker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "315184448273-lhfoot6bk3rsqv0ivuhd0fnh2n3n1vtj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8ipugtAfQYGlJKME6xF_oPmZNg-JCuJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "315184448273-lhfoot6bk3rsqv0ivuhd0fnh2n3n1vtj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
