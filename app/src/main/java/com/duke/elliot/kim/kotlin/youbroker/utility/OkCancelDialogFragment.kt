@@ -1,4 +1,4 @@
-package com.duke.elliot.kim.kotlin.youbroker.Utilities
+package com.duke.elliot.kim.kotlin.youbroker.utility
 
 import android.annotation.SuppressLint
 import android.app.Dialog

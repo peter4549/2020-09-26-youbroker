@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import com.duke.elliot.kim.kotlin.youbroker.R
-import com.duke.elliot.kim.kotlin.youbroker.Utilities.OkCancelDialogFragment
+import com.duke.elliot.kim.kotlin.youbroker.utility.OkCancelDialogFragment
 import com.duke.elliot.kim.kotlin.youbroker.databinding.FragmentTabBinding
 import com.duke.elliot.kim.kotlin.youbroker.my_page.MyPageTabFragment
 import com.duke.elliot.kim.kotlin.youbroker.partners.PartnersTabFragment

@@ -2,7 +2,7 @@ package com.duke.elliot.kim.kotlin.youbroker.sign_in
 
 import android.content.Context
 import com.duke.elliot.kim.kotlin.youbroker.R
-import com.duke.elliot.kim.kotlin.youbroker.Utilities.showToast
+import com.duke.elliot.kim.kotlin.youbroker.utility.showToast
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.FirebaseTooManyRequestsException
@@ -11,8 +11,8 @@ import timber.log.Timber
 
 class FirebaseExceptionHandler(private val context: Context) {
 
-    private val authErrorCodeFunctionMap = mutableMapOf<String, () -> Unit>()
-    private val authErrorCodeTextMap: Map<String, String> = mapOf(
+    private val errorCodeFunctionMap = mutableMapOf<String, () -> Unit>()
+    private val errorCodeTextMap: Map<String, String> = mapOf(
         ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL to context.getString(R.string.account_exists_with_different_credential),
         ERROR_CREDENTIAL_ALREADY_IN_USE to context.getString(R.string.credential_already_in_use),
         ERROR_CUSTOM_TOKEN_MISMATCH to context.getString(R.string.custom_token_mismatch),
@@ -34,13 +34,19 @@ class FirebaseExceptionHandler(private val context: Context) {
 
     fun handleException(e: FirebaseException, `throw`: Boolean = false) {
         when (e) {
-            is FirebaseAuthException -> handleException(e, `throw`)
+            is FirebaseAuthException -> handleAuthException(e, `throw`)
             is FirebaseTooManyRequestsException -> {
+                if (`throw`)
+                    throw e
+
+                showToast(context, context.getString(R.string.too_many_requests))
                 Timber.e("${context.getString(R.string.app_name)} FirebaseTooManyRequestsException: ${e.message}")
                 e.printStackTrace()
-                showToast(context, context.getString(R.string.too_many_requests))
             }
             is FirebaseNetworkException -> {
+                if (`throw`)
+                    throw e
+
                 Timber.e("${context.getString(R.string.app_name)} FirebaseNetWorkException: ${e.message}")
                 e.printStackTrace()
             }
@@ -51,20 +57,20 @@ class FirebaseExceptionHandler(private val context: Context) {
         if (`throw`)
             throw e
 
-        authErrorCodeTextMap[e.errorCode]?.let { showToast(context, it) }
-
+        errorCodeTextMap[e.errorCode]?.let { showToast(context, it) }
         Timber.e("${context.getString(R.string.app_name)} FirebaseAuthException: ${e.message}")
         e.printStackTrace()
-
         invokeExceptionFunction(e.errorCode)
     }
 
-    fun setExceptionFunction(key: String, errorFunction: () -> Unit) {
-        authErrorCodeFunctionMap[key] = errorFunction
+    fun getErrorText(key: String) = errorCodeTextMap[key] ?: unknownErrorMessage
+
+    fun setExceptionFunction(key: String, exceptionFunction: () -> Unit) {
+        errorCodeFunctionMap[key] = exceptionFunction
     }
 
     private fun invokeExceptionFunction(key: String) {
-        authErrorCodeFunctionMap[key]?.invoke()
+        errorCodeFunctionMap[key]?.invoke()
     }
 
     companion object {
