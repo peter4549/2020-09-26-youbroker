@@ -1,7 +1,9 @@
 package com.duke.elliot.kim.kotlin.youbroker.sign_in
 
+import androidx.appcompat.app.AlertDialog
 import com.duke.elliot.kim.kotlin.youbroker.MainActivity
 import com.duke.elliot.kim.kotlin.youbroker.R
+import com.duke.elliot.kim.kotlin.youbroker.utility.getProgressDialog
 import com.duke.elliot.kim.kotlin.youbroker.utility.showToast
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -24,6 +26,7 @@ class SignInHelper(private val signInFragment: SignInFragment,
 
     private val activity = signInFragment.requireActivity() as MainActivity
     private val context = signInFragment.requireContext()
+    private val progressBar: AlertDialog = getProgressDialog(signInFragment.requireContext())
 
     private fun getString(resId: Int) = context.getString(resId)
     private fun commonSignInEvent() {
@@ -32,6 +35,7 @@ class SignInHelper(private val signInFragment: SignInFragment,
     }
 
     fun signInWithEmail(email: String, password: String) {
+        showProgressBar()
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful)
@@ -42,6 +46,7 @@ class SignInHelper(private val signInFragment: SignInFragment,
     }
 
     fun signInWithFacebook() {
+        showProgressBar()
         LoginManager.getInstance().loginBehavior = LoginBehavior.NATIVE_WITH_FALLBACK
         LoginManager.getInstance().logInWithReadPermissions(activity, listOf("public_profile", "email"))
         LoginManager.getInstance().registerCallback(activity.callbackManager,
@@ -51,10 +56,12 @@ class SignInHelper(private val signInFragment: SignInFragment,
                 }
 
                 override fun onCancel() {
+                    dismissProgressBar()
                     Timber.e("Facebook sign in canceled")
                 }
 
                 override fun onError(error: FacebookException?) {
+                    dismissProgressBar()
                     showToast(context, "${getString(R.string.failed_to_sign_in_with_facebook)} \n${error?.message}")
                     error?.printStackTrace()
                 }
@@ -69,10 +76,13 @@ class SignInHelper(private val signInFragment: SignInFragment,
                 commonSignInEvent()
             } else
                 firebaseExceptionHandler.handleException(task.exception as FirebaseException)
+
+            dismissProgressBar()
         }
     }
 
     fun signInWithGoogle() {
+        showProgressBar()
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -91,10 +101,13 @@ class SignInHelper(private val signInFragment: SignInFragment,
                 commonSignInEvent()
             } else
                 firebaseExceptionHandler.handleException(task.exception as FirebaseException)
+
+            dismissProgressBar()
         }
     }
 
     fun signInWithTwitter() {
+        showProgressBar()
         (signInFragment.requireActivity() as MainActivity).getTwitterAuthClient()
             .authorize(signInFragment.requireActivity(), object : Callback<TwitterSession>() {
                 override fun success(result: Result<TwitterSession>?) {
@@ -102,6 +115,7 @@ class SignInHelper(private val signInFragment: SignInFragment,
                 }
 
                 override fun failure(exception: TwitterException?) {
+                    dismissProgressBar()
                     showToast(context, "${getString(R.string.failed_to_sign_in_with_twitter)} \n${exception?.message}")
                 }
             })
@@ -119,7 +133,17 @@ class SignInHelper(private val signInFragment: SignInFragment,
             }
             else
                 firebaseExceptionHandler.handleException(task.exception as FirebaseException)
+
+            dismissProgressBar()
         }
+    }
+
+    fun showProgressBar() {
+        progressBar.show()
+    }
+
+    fun dismissProgressBar() {
+        progressBar.dismiss()
     }
 
     companion object {

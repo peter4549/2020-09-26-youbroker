@@ -35,6 +35,8 @@
     <color name="colorHintTextDisabled">@color/colorSilver</color>
     <color name="colorHintTextEnabled">@color/colorBabyBlue</color>
 
+    <color name="colorProgressDialogBackground">#80263238</color>
+
     <color name="colorStartIconDisabled">@color/colorSilver</color>
     <color name="colorStartIconEnabled">@color/colorBabyBlue</color>
 

@@ -15,7 +15,6 @@
     <string name="sign_in_with_google">구글로 로그인</string>
     <string name="sign_in_with_twitter">트위터로 로그인</string>
     <string name="sign_out">로그아웃</string>
-    <string name="sign_up">회원가입</string>
     <string name="signed_in">로그인 되었습니다.</string>
     <string name="signed_out">로그아웃 되었습니다.</string>
 </resources>

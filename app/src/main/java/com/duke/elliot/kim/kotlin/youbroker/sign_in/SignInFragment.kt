@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.duke.elliot.kim.kotlin.youbroker.MainViewModel
+import com.duke.elliot.kim.kotlin.youbroker.MainViewModelFactory
 import com.duke.elliot.kim.kotlin.youbroker.R
 import com.duke.elliot.kim.kotlin.youbroker.databinding.FragmentSignInBinding
 import com.duke.elliot.kim.kotlin.youbroker.sign_in.SignInHelper.Companion.REQUEST_CODE_GOOGLE_SIGN_IN
@@ -18,8 +21,10 @@ class SignInFragment: Fragment() {
 
     private lateinit var binding: FragmentSignInBinding
     private lateinit var firebaseExceptionHandler: FirebaseExceptionHandler
-    private lateinit var signInHelper: SignInHelper
-    // private lateinit var viewModel: SignInViewModel TODO: Check and delete
+    // private lateinit var signInHelper: SignInHelper
+    private lateinit var viewModel: SignInViewModel
+
+    /*
     private val socialSignInButtonsOnClickListener = View.OnClickListener {
         when(it.id) {
             R.id.image_button_facebook_sign_in -> signInHelper.signInWithFacebook()
@@ -27,6 +32,8 @@ class SignInFragment: Fragment() {
             R.id.image_button_twitter_sign_in -> signInHelper.signInWithTwitter()
         }
     }
+
+     */
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,60 +43,68 @@ class SignInFragment: Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in, container, false)
 
         firebaseExceptionHandler = createFirebaseExceptionHandler()
-        signInHelper = SignInHelper(this, firebaseExceptionHandler)
+        val viewModelFactory = SignInViewModelFactory(this, firebaseExceptionHandler)
+        viewModel = ViewModelProvider(this, viewModelFactory)[SignInViewModel::class.java]
+
+        binding.signInViewModel = viewModel
+
+        // signInHelper = SignInHelper(this, firebaseExceptionHandler)
         binding.buttonSignIn.setOnClickListener {
             signInWithEmail()
         }
-        initializeSocialSignInButtons()
+        // initializeSocialSignInButtons()
 
         return binding.root
     }
 
+    /*
     private fun initializeSocialSignInButtons() {
         binding.imageButtonFacebookSignIn.setOnClickListener(socialSignInButtonsOnClickListener)
         binding.imageButtonGoogleSignIn.setOnClickListener(socialSignInButtonsOnClickListener)
         binding.imageButtonTwitterSignIn.setOnClickListener(socialSignInButtonsOnClickListener)
     }
 
+     */
+
     private fun createFirebaseExceptionHandler() =
         FirebaseExceptionHandler(requireContext()).apply {
             setExceptionFunction(FirebaseExceptionHandler.ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL) {
                 binding.textInputLayoutEmail.isErrorEnabled = true
-                binding.textInputLayoutEmail.error = firebaseExceptionHandler
+                binding.textInputLayoutEmail.error = this
                     .getErrorText(FirebaseExceptionHandler.ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL)
                 binding.editTextEmail.requestFocus()
             }
 
             setExceptionFunction(FirebaseExceptionHandler.ERROR_EMAIL_ALREADY_IN_USE) {
                 binding.textInputLayoutEmail.isErrorEnabled = true
-                binding.textInputLayoutEmail.error = firebaseExceptionHandler
+                binding.textInputLayoutEmail.error = this
                     .getErrorText(FirebaseExceptionHandler.ERROR_EMAIL_ALREADY_IN_USE)
                 binding.editTextEmail.requestFocus()
             }
 
             setExceptionFunction(FirebaseExceptionHandler.ERROR_INVALID_EMAIL) {
                 binding.textInputLayoutEmail.isErrorEnabled = true
-                binding.textInputLayoutEmail.error = firebaseExceptionHandler
+                binding.textInputLayoutEmail.error = this
                     .getErrorText(FirebaseExceptionHandler.ERROR_INVALID_EMAIL)
                 binding.editTextEmail.requestFocus()
             }
 
             setExceptionFunction(FirebaseExceptionHandler.ERROR_USER_NOT_FOUND) {
                 binding.textInputLayoutEmail.isErrorEnabled = true
-                binding.textInputLayoutEmail.error = firebaseExceptionHandler
+                binding.textInputLayoutEmail.error = this
                     .getErrorText(FirebaseExceptionHandler.ERROR_USER_NOT_FOUND)
                 binding.editTextEmail.requestFocus()
             }
 
             setExceptionFunction(FirebaseExceptionHandler.ERROR_WEAK_PASSWORD) {
                 binding.textInputLayoutPassword.isErrorEnabled = true
-                binding.textInputLayoutPassword.error = firebaseExceptionHandler
+                binding.textInputLayoutPassword.error = this
                     .getErrorText(FirebaseExceptionHandler.ERROR_WEAK_PASSWORD)
             }
 
             setExceptionFunction(FirebaseExceptionHandler.ERROR_WRONG_PASSWORD) {
                 binding.textInputLayoutPassword.isErrorEnabled = true
-                binding.textInputLayoutPassword.error = firebaseExceptionHandler
+                binding.textInputLayoutPassword.error = this
                     .getErrorText(FirebaseExceptionHandler.ERROR_WRONG_PASSWORD)
             }
         }
@@ -101,7 +116,7 @@ class SignInFragment: Fragment() {
                 try {
                     val task = GoogleSignIn.getSignedInAccountFromIntent(data)
                     val account = task.getResult(ApiException::class.java)
-                    signInHelper.firebaseAuthWithGoogle(account)
+                    viewModel.getSignInHelper().firebaseAuthWithGoogle(account)
                 } catch (e: ApiException) {
                     showToast(
                         requireContext(),
@@ -131,6 +146,6 @@ class SignInFragment: Fragment() {
             return
         }
 
-        signInHelper.signInWithEmail(email, password)
+        // signInHelper.signInWithEmail(email, password)
     }
 }
