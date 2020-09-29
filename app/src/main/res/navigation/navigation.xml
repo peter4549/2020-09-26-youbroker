@@ -7,17 +7,5 @@
     <fragment
         android:id="@+id/tabFragment"
         android:name="com.duke.elliot.kim.kotlin.youbroker.tab.TabFragment"
-        android:label="TabFragment" >
-        <action
-            android:id="@+id/action_tabFragment_to_signInFragment"
-            app:destination="@id/signInFragment"
-            app:enterAnim="@anim/anim_slide_in_from_bottom"
-            app:exitAnim="@anim/anim_slide_out_to_top"
-            app:popEnterAnim="@anim/anim_slide_in_from_top"
-            app:popExitAnim="@anim/anim_slide_out_to_bottom" />
-    </fragment>
-    <fragment
-        android:id="@+id/signInFragment"
-        android:name="com.duke.elliot.kim.kotlin.youbroker.sign_in.SignInFragment"
-        android:label="SignInFragment" />
+        android:label="TabFragment" />
 </navigation>

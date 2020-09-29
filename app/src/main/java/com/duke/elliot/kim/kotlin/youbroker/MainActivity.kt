@@ -17,7 +17,6 @@ import timber.log.Timber
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
-    val callbackManager: CallbackManager? = CallbackManager.Factory.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +31,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupTimber() {
         Timber.plant(Timber.DebugTree())
-    }
-
-    fun getTwitterAuthClient() = viewModel.getTwitterAuthClient()
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager?.onActivityResult(requestCode, resultCode, data)
-        viewModel.getTwitterAuthClient().onActivityResult(requestCode, resultCode, data)
-        super.onActivityResult(requestCode, resultCode, data)
     }
 }

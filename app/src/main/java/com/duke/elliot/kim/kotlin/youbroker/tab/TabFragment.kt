@@ -1,6 +1,7 @@
 package com.duke.elliot.kim.kotlin.youbroker.tab
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -19,6 +20,7 @@ import com.duke.elliot.kim.kotlin.youbroker.partners.PartnersTabFragment
 import com.duke.elliot.kim.kotlin.youbroker.profile.ProfileHelper.profileNotCreated
 import com.duke.elliot.kim.kotlin.youbroker.profile.ProfileHelper.requestProfileCreation
 import com.duke.elliot.kim.kotlin.youbroker.promotion.PromotionsTabFragment
+import com.duke.elliot.kim.kotlin.youbroker.sign_in.SignInActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 
@@ -88,7 +90,7 @@ class TabFragment: Fragment() {
                 getString(R.string.request_sign_in_message)
             ).apply {
                 setOkButtonOnClick {
-                    binding.root.findNavController().navigate(TabFragmentDirections.actionTabFragmentToSignInFragment())
+                    this.startActivity(Intent(requireContext(), SignInActivity::class.java))
                     this.dismiss()
                 }
             }

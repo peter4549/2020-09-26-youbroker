@@ -13,10 +13,10 @@
 
     <font
         android:fontStyle="normal"
-        android:fontWeight="700"
+        android:fontWeight="800"
         android:font="@font/paybooc_bold"
         app:fontStyle="normal"
-        app:fontWeight="700"
+        app:fontWeight="800"
         app:font="@font/paybooc_bold"
         tools:targetApi="o" />
 </font-family>

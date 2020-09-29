@@ -14,6 +14,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorFragmentBackground"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,26 +50,26 @@
                 app:srcCompat="@drawable/ic_wings_160" />
 
             <TextView
-                android:id="@+id/text_email_title"
+                android:id="@+id/text_identity_verification_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@string/email"
+                android:layout_marginTop="8dp"
+                android:text="@string/identity_verification"
                 android:textStyle="bold"
                 app:autoSizeMaxTextSize="14sp"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeStepGranularity="2sp"
                 app:autoSizeTextType="uniform"
-                app:layout_constraintStart_toStartOf="@+id/text_input_layout_email"
+                app:layout_constraintStart_toStartOf="@+id/text_input_layout_phone_number"
                 app:layout_constraintTop_toBottomOf="@+id/image_logo" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_input_layout_email"
+                android:id="@+id/text_input_layout_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:gravity="center_vertical"
                 app:boxBackgroundColor="@color/color_box_background"
                 app:boxStrokeColor="@color/color_box_stroke"
@@ -85,141 +86,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_email_title"
-                app:startIconDrawable="@drawable/ic_round_email_24"
-                app:startIconTint="@color/color_start_icon"
-                tools:layout_editor_absoluteY="280dp">
+                app:layout_constraintTop_toBottomOf="@+id/text_identity_verification_title"
+                app:startIconDrawable="@drawable/ic_round_phone_24"
+                app:startIconTint="@color/color_start_icon">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_email"
+                    android:id="@+id/edit_text_phone_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:autofillHints="@string/email"
                     android:fontFamily="@font/paybooc_font_family"
                     android:gravity="center_vertical"
-                    android:inputType="textEmailAddress"
-                    android:padding="8dp"
-                    android:textColor="@color/color_text_dark"
-                    app:autoSizeMaxTextSize="16sp"
-                    app:autoSizeMinTextSize="14sp"
-                    app:autoSizeStepGranularity="2sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/text_password_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/password"
-                android:textStyle="bold"
-                app:autoSizeMaxTextSize="14sp"
-                app:autoSizeMinTextSize="12sp"
-                app:autoSizeStepGranularity="2sp"
-                app:autoSizeTextType="uniform"
-                app:layout_constraintStart_toStartOf="@+id/text_input_layout_password"
-                app:layout_constraintTop_toBottomOf="@+id/text_input_layout_email" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_input_layout_password"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="center_vertical"
-                app:boxBackgroundColor="@color/color_box_background"
-                app:boxStrokeColor="@color/color_box_stroke"
-                app:boxStrokeErrorColor="@color/colorError"
-                app:endIconMode="password_toggle"
-                app:endIconTint="@color/color_end_icon"
-                app:errorEnabled="true"
-                app:errorIconTint="@color/colorError"
-                app:errorTextAppearance="@style/PayboocFontFamilyStyle"
-                app:errorTextColor="@color/colorError"
-                app:helperTextEnabled="true"
-                app:helperTextTextAppearance="@style/PayboocFontFamilyStyle"
-                app:hintTextColor="@color/color_hint_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_password_title"
-                app:startIconDrawable="@drawable/ic_round_lock_24"
-                app:startIconTint="@color/color_start_icon">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/email"
-                    android:fontFamily="@font/paybooc_font_family"
-                    android:gravity="center_vertical"
-                    android:inputType="textPassword"
-                    android:padding="8dp"
-                    android:textColor="@color/color_text_dark"
-                    app:autoSizeMaxTextSize="16sp"
-                    app:autoSizeMinTextSize="14sp"
-                    app:autoSizeStepGranularity="2sp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/text_check_password_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/check_password"
-                android:textStyle="bold"
-                app:autoSizeMaxTextSize="14sp"
-                app:autoSizeMinTextSize="12sp"
-                app:autoSizeStepGranularity="2sp"
-                app:autoSizeTextType="uniform"
-                app:layout_constraintStart_toStartOf="@+id/text_input_layout_check_password"
-                app:layout_constraintTop_toBottomOf="@+id/text_input_layout_password" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_input_layout_check_password"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="center_vertical"
-                app:boxBackgroundColor="@color/color_box_background"
-                app:boxStrokeColor="@color/color_box_stroke"
-                app:boxStrokeErrorColor="@color/colorError"
-                app:endIconMode="password_toggle"
-                app:endIconTint="@color/color_end_icon"
-                app:errorEnabled="true"
-                app:errorIconTint="@color/colorError"
-                app:errorTextAppearance="@style/PayboocFontFamilyStyle"
-                app:errorTextColor="@color/colorError"
-                app:helperTextEnabled="true"
-                app:helperTextTextAppearance="@style/PayboocFontFamilyStyle"
-                app:hintTextColor="@color/color_hint_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_check_password_title"
-                app:startIconDrawable="@drawable/ic_round_check_circle_24"
-                app:startIconTint="@color/color_start_icon">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_check_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/check_password"
-                    android:fontFamily="@font/paybooc_font_family"
-                    android:gravity="center_vertical"
-                    android:inputType="textPassword"
+                    android:hint="@string/phone_number"
+                    android:inputType="phone"
                     android:padding="8dp"
                     android:textColor="@color/color_text_dark"
                     app:autoSizeMaxTextSize="16sp"
@@ -233,12 +112,134 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:id="@+id/button_send_verification_code"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/color_accent_button_background"
+                android:elevation="2dp"
+                android:fontFamily="@font/paybooc_font_family"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/send_verification_code"
+                android:textColor="@color/color_accent_button_text"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="18sp"
+                app:autoSizeMinTextSize="16sp"
+                app:autoSizeStepGranularity="2sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_layout_phone_number" />
+
+            <TextView
+                android:id="@+id/text_enter_verification_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/enter_verification_code"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="14sp"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeStepGranularity="2sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintStart_toStartOf="@+id/text_input_layout_verification_code"
+                app:layout_constraintTop_toBottomOf="@+id/button_send_verification_code" />
+
+            <TextView
+                android:id="@+id/text_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                app:autoSizeMaxTextSize="14sp"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeStepGranularity="2sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="@+id/text_enter_verification_code"
+                app:layout_constraintStart_toEndOf="@+id/text_enter_verification_code"
+                app:layout_constraintTop_toTopOf="@+id/text_enter_verification_code"
+                tools:text="1:50"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_layout_verification_code"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center_vertical"
+                app:boxBackgroundColor="@color/color_box_background"
+                app:boxStrokeColor="@color/color_box_stroke"
+                app:boxStrokeErrorColor="@color/colorError"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/color_end_icon"
+                app:errorEnabled="true"
+                app:errorIconTint="@color/colorError"
+                app:errorTextAppearance="@style/PayboocFontFamilyStyle"
+                app:errorTextColor="@color/colorError"
+                app:helperTextEnabled="true"
+                app:helperTextTextAppearance="@style/PayboocFontFamilyStyle"
+                app:hintTextColor="@color/color_hint_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_enter_verification_code">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_verification_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/email"
+                    android:fontFamily="@font/paybooc_font_family"
+                    android:gravity="center_vertical"
+                    android:hint="@string/verification_code"
+                    android:inputType="number"
+                    android:padding="8dp"
+                    android:textColor="@color/color_text_dark"
+                    app:autoSizeMaxTextSize="16sp"
+                    app:autoSizeMinTextSize="14sp"
+                    app:autoSizeStepGranularity="2sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button_ok"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/color_accent_button_background"
+                android:elevation="2dp"
+                android:fontFamily="@font/paybooc_font_family"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/ok"
+                android:textColor="@color/color_accent_button_text"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="18sp"
+                app:autoSizeMinTextSize="16sp"
+                app:autoSizeStepGranularity="2sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_layout_verification_code" />
+
+            <Button
                 android:id="@+id/button_next"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:backgroundTint="@color/color_accent_button_background"
                 android:elevation="2dp"
                 android:fontFamily="@font/paybooc_font_family"
@@ -254,7 +255,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_input_layout_check_password" />
+                app:layout_constraintTop_toBottomOf="@+id/button_ok" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

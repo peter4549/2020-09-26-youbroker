@@ -1,7 +1,6 @@
 package com.duke.elliot.kim.kotlin.youbroker.sign_in
 
 import androidx.appcompat.app.AlertDialog
-import com.duke.elliot.kim.kotlin.youbroker.MainActivity
 import com.duke.elliot.kim.kotlin.youbroker.R
 import com.duke.elliot.kim.kotlin.youbroker.utility.getProgressDialog
 import com.duke.elliot.kim.kotlin.youbroker.utility.showToast
@@ -21,17 +20,15 @@ import com.twitter.sdk.android.core.TwitterException
 import com.twitter.sdk.android.core.TwitterSession
 import timber.log.Timber
 
-class SignInHelper(private val signInFragment: SignInFragment,
+class SignInHelper(private val signInActivity: SignInActivity,
                    private val firebaseExceptionHandler: FirebaseExceptionHandler) {
 
-    private val activity = signInFragment.requireActivity() as MainActivity
-    private val context = signInFragment.requireContext()
-    private val progressBar: AlertDialog = getProgressDialog(signInFragment.requireContext())
+    private val progressBar: AlertDialog = getProgressDialog(signInActivity)
 
-    private fun getString(resId: Int) = context.getString(resId)
+    private fun getString(resId: Int) = signInActivity.getString(resId)
     private fun commonSignInEvent() {
-        activity.onBackPressed()
-        showToast(context, getString(R.string.signed_in))
+        signInActivity.onBackPressed()
+        showToast(signInActivity, getString(R.string.signed_in))
     }
 
     fun signInWithEmail(email: String, password: String) {
@@ -48,8 +45,8 @@ class SignInHelper(private val signInFragment: SignInFragment,
     fun signInWithFacebook() {
         showProgressBar()
         LoginManager.getInstance().loginBehavior = LoginBehavior.NATIVE_WITH_FALLBACK
-        LoginManager.getInstance().logInWithReadPermissions(activity, listOf("public_profile", "email"))
-        LoginManager.getInstance().registerCallback(activity.callbackManager,
+        LoginManager.getInstance().logInWithReadPermissions(signInActivity, listOf("public_profile", "email"))
+        LoginManager.getInstance().registerCallback(signInActivity.callbackManager,
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(result: LoginResult?) {
                     firebaseAuthWithFacebook(result)
@@ -62,7 +59,7 @@ class SignInHelper(private val signInFragment: SignInFragment,
 
                 override fun onError(error: FacebookException?) {
                     dismissProgressBar()
-                    showToast(context, "${getString(R.string.failed_to_sign_in_with_facebook)} \n${error?.message}")
+                    showToast(signInActivity, "${getString(R.string.failed_to_sign_in_with_facebook)} \n${error?.message}")
                     error?.printStackTrace()
                 }
             })
@@ -87,10 +84,10 @@ class SignInHelper(private val signInFragment: SignInFragment,
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        val googleSignInClient = GoogleSignIn.getClient(context, googleSignInOptions)
+        val googleSignInClient = GoogleSignIn.getClient(signInActivity, googleSignInOptions)
         val signInIntent = googleSignInClient?.signInIntent
 
-        signInFragment.startActivityForResult(signInIntent, REQUEST_CODE_GOOGLE_SIGN_IN)
+        signInActivity.startActivityForResult(signInIntent, REQUEST_CODE_GOOGLE_SIGN_IN)
     }
 
     fun firebaseAuthWithGoogle(account: GoogleSignInAccount?) {
@@ -108,15 +105,15 @@ class SignInHelper(private val signInFragment: SignInFragment,
 
     fun signInWithTwitter() {
         showProgressBar()
-        (signInFragment.requireActivity() as MainActivity).getTwitterAuthClient()
-            .authorize(signInFragment.requireActivity(), object : Callback<TwitterSession>() {
+        signInActivity.getTwitterAuthClient()
+            .authorize(signInActivity, object : Callback<TwitterSession>() {
                 override fun success(result: Result<TwitterSession>?) {
                     result?.data?.let { firebaseAuthWithTwitter(it) }
                 }
 
                 override fun failure(exception: TwitterException?) {
                     dismissProgressBar()
-                    showToast(context, "${getString(R.string.failed_to_sign_in_with_twitter)} \n${exception?.message}")
+                    showToast(signInActivity, "${getString(R.string.failed_to_sign_in_with_twitter)} \n${exception?.message}")
                 }
             })
     }
@@ -138,12 +135,16 @@ class SignInHelper(private val signInFragment: SignInFragment,
         }
     }
 
-    fun showProgressBar() {
+    private fun showProgressBar() {
         progressBar.show()
     }
 
     fun dismissProgressBar() {
         progressBar.dismiss()
+    }
+
+    private fun handleException(e: Exception) {
+
     }
 
     companion object {

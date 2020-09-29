@@ -10,6 +10,11 @@
             type="com.duke.elliot.kim.kotlin.youbroker.sign_in.SignInViewModel" />
     </data>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/constraint_layout_activity_sign_in">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -54,7 +59,6 @@
                 android:layout_weight="1"
                 android:background="?selectableItemBackgroundBorderless"
                 android:contentDescription="@string/sign_in_with_facebook"
-                android:onClick="@{() -> signInViewModel.signInWithFacebook()}"
                 app:layout_constraintEnd_toStartOf="@+id/image_button_google_sign_in"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +72,6 @@
                 android:layout_weight="1"
                 android:background="?selectableItemBackgroundBorderless"
                 android:contentDescription="@string/sign_in_with_google"
-                android:onClick="@{() -> signInViewModel.signInWithGoogle()}"
                 app:layout_constraintEnd_toStartOf="@+id/image_button_twitter_sign_in"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/image_button_facebook_sign_in"
@@ -82,7 +85,6 @@
                 android:layout_weight="1"
                 android:background="?selectableItemBackgroundBorderless"
                 android:contentDescription="@string/sign_in_with_twitter"
-                android:onClick="@{() -> signInViewModel.signInWithTwitter()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/image_button_google_sign_in"
@@ -278,4 +280,5 @@
                 tools:text="비밀번호 찾기" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
 </layout>

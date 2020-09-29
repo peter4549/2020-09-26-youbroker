@@ -1,27 +1,29 @@
 package com.duke.elliot.kim.kotlin.youbroker.sign_in
 
-import androidx.appcompat.app.AlertDialog
+import android.app.Application
 import androidx.lifecycle.ViewModel
-import com.duke.elliot.kim.kotlin.youbroker.utility.getProgressDialog
-import com.duke.elliot.kim.kotlin.youbroker.utility.showToast
+import com.duke.elliot.kim.kotlin.youbroker.R
+import com.twitter.sdk.android.core.Twitter
+import com.twitter.sdk.android.core.TwitterAuthConfig
+import com.twitter.sdk.android.core.TwitterConfig
+import com.twitter.sdk.android.core.identity.TwitterAuthClient
 
-class SignInViewModel(
-    private val signInFragment: SignInFragment,
-    firebaseExceptionHandler: FirebaseExceptionHandler
-) : ViewModel() {
-    private val signInHelper = SignInHelper(signInFragment, firebaseExceptionHandler)
+class SignInViewModel(application: Application) : ViewModel() {
+    private val twitterAuthConfig = TwitterAuthConfig(
+        application.getString(R.string.twitter_api_key),
+        application.getString(R.string.twitter_api_key_secret)
+    )
 
-    fun getSignInHelper() = signInHelper
+    private val twitterConfig = TwitterConfig.Builder(application)
+        .twitterAuthConfig(twitterAuthConfig)
+        .build()
 
-    fun signInWithFacebook() {
-        signInHelper.signInWithFacebook()
+    private var twitterAuthClient: TwitterAuthClient
+
+    init {
+        Twitter.initialize(twitterConfig)
+        twitterAuthClient = TwitterAuthClient()
     }
 
-    fun signInWithGoogle() {
-        signInHelper.signInWithGoogle()
-    }
-
-    fun signInWithTwitter() {
-        signInHelper.signInWithTwitter()
-    }
+    fun getTwitterAuthClient() = twitterAuthClient
 }
